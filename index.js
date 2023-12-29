@@ -8,8 +8,15 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
+//if output is not exists yet, we create it
+if (!fs.existsSync(OUTPUT_DIR)) {
+  fs.mkdirSync(OUTPUT_DIR);
+}
+
 const render = require("./src/page-template.js");
 
+//array to store team members objects
+const teamArr = [];
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
@@ -45,9 +52,15 @@ inquirer.prompt([
         managerData.officenumber
       );
     //console.log(newManager);  
+    
+    teamArr.push(newManager);
     menu();
 });  
+
 }
+
+//calling the start function
+inputManagerData();
 
 //create menu
 function menu(){
@@ -69,6 +82,7 @@ function menu(){
     
     if (selectedAnswer.length === 0) {
       console.log('You did not select any option.');
+      menu();
     } 
     else if (selectedAnswer.includes('Add an engineer')){
       inputEngineerData();
@@ -78,13 +92,11 @@ function menu(){
     }
     else if (selectedAnswer.includes('Finish building the team')){
       finish();
-    }  
-
+    }
 });  
 }
 
-//calling the start function
-inputManagerData();
+
 
 // function to gather Engineer data
 function inputEngineerData(){
@@ -118,9 +130,12 @@ function inputEngineerData(){
           engineerData.email,
           engineerData.github
           );
-        console.log(newEngineer);  
+        //console.log(newEngineer);  
+        
         menu();
-    });  
+        return teamArr.push(newEngineer);
+    });
+    
     }
 
 // function to gather Intern data
@@ -155,12 +170,22 @@ function inputInternData(){
         internData.email,
         internData.school
         );
-      console.log(newIntern);  
-      menu();
-  });  
+        
+      menu(); 
+      return teamArr.push(newIntern);
+  }); 
+
   }    
 
   function finish(){
-    render(teamArr);
+    const htmlContent = render(teamArr); // Generate the HTML content
+
+  fs.writeFile(outputPath, htmlContent, (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log('HTML file is ready: ' + outputPath);
+    }
     process.exit(0);
-  }
+  });
+}
