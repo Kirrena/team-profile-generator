@@ -159,3 +159,8 @@ function inputInternData(){
       menu();
   });  
   }    
+
+  function finish(){
+    render(teamArr);
+    process.exit(0);
+  }
