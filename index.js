@@ -70,13 +70,13 @@ function menu(){
     if (selectedAnswer.length === 0) {
       console.log('You did not select any option.');
     } 
-    else if (selectedAnswer === 'Add an engineer'){
+    else if (selectedAnswer.includes('Add an engineer')){
       inputEngineerData();
     }
-    else if (selectedAnswer === 'Add an intern'){
+    else if (selectedAnswer.includes('Add an intern')){
       inputInternData();
     }
-    else if (selectedAnswer === 'Finish building the team'){
+    else if (selectedAnswer.includes('Finish building the team')){
       finish();
     }  
 
@@ -106,19 +106,19 @@ function inputEngineerData(){
         },
         {
           type: 'input',
-          name: 'officenumber',
-          message: "What is the Manager's office number?",
+          name: 'github',
+          message: "What is the engineer's gitHub name?",
         },
     ])
     //make sure to give parameters individually not as object
-    .then((managerData) => { 
-        const newManager = new Manager(
-            managerData.name,
-            managerData.id,
-            managerData.email,
-            managerData.officenumber
+    .then((engineerData) => { 
+        const newEngineer = new Engineer(
+          engineerData.name,
+          engineerData.id,
+          engineerData.email,
+          engineerData.github
           );
-        //console.log(newManager);  
+        console.log(newEngineer);  
         menu();
     });  
     }
