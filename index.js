@@ -122,3 +122,40 @@ function inputEngineerData(){
         menu();
     });  
     }
+
+// function to gather Intern data
+function inputInternData(){
+  inquirer.prompt([
+      {
+        type: 'input',
+        name: 'name',
+        message: "What is the intern's name?",
+      },
+      {
+        type: 'input',
+        name: 'id',
+        message: "What is the intern's employee ID?",
+      },
+      {
+        type: 'input',
+        name: 'email',
+        message: "What is the intern's email address?",
+      },
+      {
+        type: 'input',
+        name: 'school',
+        message: "What is the name of the intern's school?",
+      },
+  ])
+  //make sure to give parameters individually not as object
+  .then((internData) => { 
+      const newIntern = new Intern(
+        internData.name,
+        internData.id,
+        internData.email,
+        internData.school
+        );
+      console.log(newIntern);  
+      menu();
+  });  
+  }    
