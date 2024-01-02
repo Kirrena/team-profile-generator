@@ -40,6 +40,7 @@
   Omar Patel [https://www.linkedin.com/in/omarsalimpatel]
 
   ## Screenshot:
+  ![team](https://github.com/Kirrena/weather-forecast/assets/74355186/fa4fa6c6-ad41-4bd0-9ce9-8379d3c03b1d)
   
   ## Table of Content:
   * [Description](#description)
