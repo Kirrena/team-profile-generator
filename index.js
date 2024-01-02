@@ -26,22 +26,26 @@ inquirer.prompt([
       type: 'input',
       name: 'name',
       message: "What is the Manager's name?",
+      validate: val => /^[a-zA-Z]+$/g.test(val),
     },
     {
       type: 'input',
       name: 'id',
       message: "What is the Manager's employee ID?",
+      validate: val => /^[1-9]+$/.test(val),
     },
     {
       type: 'input',
       name: 'email',
       message: "What is the Manager's email address?",
+      validate: email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
     },
     {
       type: 'input',
       name: 'officenumber',
       message: "What is the Manager's office number?",
-    },
+      validate: val => /^[1-9]+$/.test(val),
+    },    
 ])
 //make sure to give parameters individually not as object
 .then((managerData) => { 
@@ -105,21 +109,25 @@ function inputEngineerData(){
           type: 'input',
           name: 'name',
           message: "What is the engineer's name?",
+          validate: val => /^[a-zA-Z]+$/g.test(val),
         },
         {
           type: 'input',
           name: 'id',
           message: "What is the engineer's employee ID?",
+          validate: val => /^[1-9]+$/.test(val),
         },
         {
           type: 'input',
           name: 'email',
           message: "What is the engineer's email address?",
+          validate: email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
         },
         {
           type: 'input',
           name: 'github',
           message: "What is the engineer's gitHub name?",
+          validate: val => /^[a-zA-Z0-9]+$/.test(val),
         },
     ])
     //make sure to give parameters individually not as object
@@ -145,21 +153,25 @@ function inputInternData(){
         type: 'input',
         name: 'name',
         message: "What is the intern's name?",
+        validate: val => /^[a-zA-Z]+$/g.test(val),
       },
       {
         type: 'input',
         name: 'id',
         message: "What is the intern's employee ID?",
+        validate: val => /^[1-9]+$/.test(val),
       },
       {
         type: 'input',
         name: 'email',
         message: "What is the intern's email address?",
+        validate: email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
       },
       {
         type: 'input',
         name: 'school',
         message: "What is the name of the intern's school?",
+        validate: val => /^[a-zA-Z0-9]+$/.test(val),
       },
   ])
   //make sure to give parameters individually not as object
